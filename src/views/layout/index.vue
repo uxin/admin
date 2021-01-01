@@ -19,7 +19,7 @@ export default {
   components: {
     Nav,
     Head,
-    Main,
+    Main
   },
 };
 </script>
