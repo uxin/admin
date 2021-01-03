@@ -12,73 +12,31 @@
       active-text-color="#409EFF"
     >
       <router-link to="/">
-        <el-menu-item index="1" class="el-submenu">
+        <el-menu-item index="0" class="el-submenu">
           <i class="el-icon-house"></i>
           <span slot="title">首页</span>
         </el-menu-item>
       </router-link>
-      <el-submenu index="2">
+      <el-submenu
+        v-for="(item, index) in routes"
+        :key="index"
+        :index="index + '1'"
+      >
         <template slot="title">
-          <i class="el-icon-s-goods"></i>
-          <span slot="title">商品</span>
+          <i :class="item.icon"></i>
+          <span slot="title">{{ item.name }}</span>
         </template>
         <template>
-          <el-menu-item index="1-1">
-            <i class="el-icon-s-goods"></i>
-            <span>商品列表</span>
-          </el-menu-item>
-          <el-menu-item index="1-2">
-            <i class="el-icon-s-goods"></i>
-            <span>添加商品</span>
-          </el-menu-item>
-        </template>
-      </el-submenu>
-      <el-submenu index="3">
-        <template slot="title">
-          <i class="el-icon-s-order"></i>
-          <span slot="title">订单</span>
-        </template>
-        <template>
-          <el-menu-item index="1-1">
-            <i class="el-icon-s-order"></i>
-            <span>订单列表</span>
-          </el-menu-item>
-          <el-menu-item index="1-2">
-            <i class="el-icon-s-order"></i>
-            <span>订单设置</span>
-          </el-menu-item>
-        </template>
-      </el-submenu>
-      <el-submenu index="4">
-        <template slot="title">
-          <i class="el-icon-collection"></i>
-          <span slot="title">营销</span>
-        </template>
-        <template>
-          <el-menu-item index="1-1">
-            <i class="el-icon-collection"></i>
-            <span>秒杀活动列表</span>
-          </el-menu-item>
-          <el-menu-item index="1-2">
-            <i class="el-icon-collection"></i>
-            <span>优惠券列表</span>
-          </el-menu-item>
-        </template>
-      </el-submenu>
-      <el-submenu index="5">
-        <template slot="title">
-          <i class="el-icon-s-custom"></i>
-          <span slot="title">权限</span>
-        </template>
-        <template>
-          <el-menu-item index="1-1">
-            <i class="el-icon-s-custom"></i>
-            <span>用户列表</span>
-          </el-menu-item>
-          <el-menu-item index="1-2">
-            <i class="el-icon-s-custom"></i>
-            <span>角色列表</span>
-          </el-menu-item>
+          <router-link
+            v-for="(children, childrenIndex) in item.children"
+            :to="children.path"
+            :key="childrenIndex"
+          >
+            <el-menu-item :index="index + '1' + '-' + childrenIndex">
+              <i :class="children.icon"></i>
+              <span>{{ children.name }}</span>
+            </el-menu-item>
+          </router-link>
         </template>
       </el-submenu>
     </el-menu>
@@ -87,20 +45,59 @@
 <script>
 export default {
   name: "Nav",
-  methods: {
+  data() {
+    return {
+      routes: [
+        {
+          path: "/sp",
+          name: "商品",
+          icon: "el-icon-s-goods",
+          children: [
+            {
+              path: "/sp/list",
+              name: "商品列表",
+              icon: "el-icon-s-goods",
+            },
+            {
+              path: "/sp/add",
+              name: "添加商品",
+              icon: "el-icon-s-goods",
+            },
+          ],
+        },
+        {
+          path: "/dd",
+          name: "订单",
+          icon: "el-icon-s-order",
+          children: [
+            {
+              path: "/dd/list",
+              name: "订单列表",
+              icon: "el-icon-s-order",
+            },
+            {
+              path: "/dd/set",
+              name: "订单设置",
+              icon: "el-icon-s-order",
+            },
+          ],
+        },
+      ],
+    };
   },
-  computed:{
-      isCollapse(){
-          return !false;
-      }
-  }
+  methods: {},
+  computed: {
+    isCollapse() {
+      return !true;
+    },
+  },
 };
 </script>
 <style lang="scss" scope>
 #app .sidebar-container {
   -webkit-transition: width 0.28s;
   transition: width 0.28s;
-  width: 64px !important;
+  width: 200px !important;
   height: 100%;
   position: fixed;
   font-size: 0px;

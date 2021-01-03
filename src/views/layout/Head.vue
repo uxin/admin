@@ -31,8 +31,7 @@ export default {
   data() {
     return {};
   },
-  props: {
-  },
+  props: {},
 };
 </script>
 <style lang="scss" scoped>

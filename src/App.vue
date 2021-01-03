@@ -62,7 +62,7 @@ a:hover {
 .main-container {
   min-height: 100%;
   transition: margin-left 0.28s;
-  margin-left: 64px;
+  margin-left: 200px;
 }
 
 .app-container {

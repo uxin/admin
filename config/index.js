@@ -10,7 +10,20 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    // 配置代理模式
+    // BASE_API: '"http://39.107.252.103:8080"'
+    // http://admin-api.macrozheng.com
+    // https://cnodejs.org
+    proxyTable: {
+      '/api': {
+        target: "http://admin-api.macrozheng.com", // 接口域名
+        secure: true, // 如果是 https ,需要开启这个选项
+        changeOrigin: true, // 是否是跨域请求
+        pathRewirte: {
+          '^/api': '', //重写接口
+        }
+      }
+    },
 
     // Various Dev Server settings
     host: '0.0.0.0', // can be overwritten by process.env.HOST

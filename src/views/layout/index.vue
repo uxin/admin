@@ -21,6 +21,11 @@ export default {
     Head,
     Main
   },
+  mounted(){
+    this.$api.getTopics().then((res)=>{
+      console.log(res);
+    })
+  }
 };
 </script>
 <style lang="scss" scope>
