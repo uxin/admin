@@ -5,6 +5,11 @@ Vue.use(Router);
 export default new Router({
   routes: [
     {
+      path: '/login',
+      name: 'login',
+      component: resolve => require(['@/views/login'], resolve),
+    },
+    {
       path: '/',
       name: 'home',
       redirect: 'home',
@@ -13,7 +18,7 @@ export default new Router({
         path: 'home',
         name: 'home',
         meta: {keepAlive: true},
-        component: resolve => require(['@/views/main/home'], resolve),
+        component: resolve => require(['@/views/home'], resolve),
       }]
     },
     {

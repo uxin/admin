@@ -2,7 +2,7 @@
   <div>
     <el-menu class="navbar" mode="horizontal">
       <div class="hamburger-container">
-        <i class="el-icon-menu"></i>
+        <i class="el-icon-menu" @click="toggleClick"></i>
       </div>
       <el-breadcrumb separator="/" class="app-breadcrumb">
         <el-breadcrumb-item class="no-redirect" :to="{ path: '/' }"
@@ -26,17 +26,27 @@
   </div>
 </template>
 <script>
+import { mapGetters } from "vuex";
 export default {
   name: "Head",
   data() {
-    return {};
+    return {
+      flag: false,
+    };
   },
-  props: {},
+  computed: {
+    ...mapGetters(["sidebar"]),
+  },
+  methods: {
+    toggleClick() {
+      this.$store.dispatch("ToggleSideBar");
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>
 #app .hideSidebar .main-container {
-  margin-left: 36px;
+  margin-left: 64px;
 }
 .navbar {
   height: 50px;

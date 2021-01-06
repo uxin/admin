@@ -41,11 +41,11 @@
 
     .hideSidebar {
         .sidebar-container {
-            width: 36px !important;
+            width: 64px !important;
         }
 
         .main-container {
-            margin-left: 36px;
+            margin-left: 64px;
         }
 
         .submenu-title-noDropdown {
@@ -59,7 +59,7 @@
 
         .el-submenu {
             &>.el-submenu__title {
-                padding-left: 10px !important;
+                padding-left: 20px !important;
 
                 &>span {
                     height: 0;
