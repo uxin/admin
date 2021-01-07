@@ -29,7 +29,6 @@ instance.interceptors.request.use(config => {
 
 // respone拦截器
 instance.interceptors.response.use(res => {
-    console.log(res.data.code);
     if (res.data.code !== 200) {
         Message({
             message: res.data.message,

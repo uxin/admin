@@ -9,19 +9,13 @@
           >首页</el-breadcrumb-item
         >
       </el-breadcrumb>
-      <el-dropdown class="avatar-container" trigger="click">
+      <div class="avatar-container">
         <div class="avatar-wrapper">
-          <i class="el-icon-setting"></i>
+          <el-tooltip class="item" effect="dark" content="退出登录" placement="left">
+            <i class="fa fa-sign-out" @click="logout"></i>
+          </el-tooltip>
         </div>
-        <el-dropdown-menu class="user-dropdown" slot="dropdown">
-          <router-link class="inlineBlock" to="/">
-            <el-dropdown-item>首页</el-dropdown-item>
-          </router-link>
-          <el-dropdown-item divided>
-            <span style="display: block">退出</span>
-          </el-dropdown-item>
-        </el-dropdown-menu>
-      </el-dropdown>
+      </div>
     </el-menu>
   </div>
 </template>
@@ -38,7 +32,13 @@ export default {
     ...mapGetters(["sidebar"]),
   },
   methods: {
-    ...mapActions(["toggleSideBar"])
+    ...mapActions(["toggleSideBar"]),
+    logout(){
+      this.$store.dispatch("logout").then(()=>{
+        // 重新刷新为了重新实例化vue-router对象 避免bug
+        location.reload();
+      })
+    }
   },
 };
 </script>
@@ -47,8 +47,8 @@ export default {
   margin-left: 64px;
 }
 .navbar {
-  height: 50px;
-  line-height: 50px;
+  height: 56px;
+  line-height: 56px;
   border-radius: 0px !important;
   .hamburger-container {
     float: left;
@@ -65,7 +65,7 @@ export default {
     height: 100%;
     margin-left: 10px;
     font-size: 14px;
-    line-height: 50px;
+    line-height: 56px;
   }
   .screenfull {
     position: absolute;
@@ -76,11 +76,11 @@ export default {
   .avatar-container {
     display: inline-block;
     position: absolute;
-    right: 35px;
-    height: 50px;
+    right: 25px;
+    height: 56px;
     .avatar-wrapper {
       cursor: pointer;
-      height: 50px;
+      height: 56px;
       i {
         font-size: 24px;
         vertical-align: middle;

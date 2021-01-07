@@ -7,6 +7,7 @@ import App from './App';
 import router from './router';
 import core from "@/core/core.config.js";
 import '@/css/index.scss';
+import 'font-awesome/css/font-awesome.css';
 import store from '@/store';
 
 Vue.config.productionTip = false;
