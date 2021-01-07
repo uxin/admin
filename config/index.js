@@ -15,14 +15,14 @@ module.exports = {
     // http://admin-api.macrozheng.com
     // https://cnodejs.org
     proxyTable: {
-      '/api': {
-        target: "http://admin-api.macrozheng.com", // 接口域名
-        secure: true, // 如果是 https ,需要开启这个选项
+      /* '/api': {
+        target: "http://39.107.252.103:8080", // 接口域名
+        secure: false, // 如果是 https ,需要开启这个选项
         changeOrigin: true, // 是否是跨域请求
         pathRewirte: {
           '^/api': '', //重写接口
         }
-      }
+      } */
     },
 
     // Various Dev Server settings

@@ -15,13 +15,14 @@
               </el-input>
             </el-form-item>
             <el-form-item class="btn">
-              <el-button type="primary" :autofocus="true" :loading="loading" @click="submitForm('loginForm')">登录</el-button>
+              <el-button type="primary" :autofocus="true" :loading="loading" @click.native.prevent="submitForm">登录</el-button>
             </el-form-item>
         </el-form>
     </el-card>
   </div>
 </template>
 <script>
+import Cookies from 'js-cookie'
 export default {
   name: "login",
   data(){
@@ -52,6 +53,16 @@ export default {
         }
     }
   },
+  created() {
+    this.loginForm.username = Cookies.get("username");
+    this.loginForm.password = Cookies.get("password");
+    if(this.loginForm.username === undefined||this.loginForm.username==null||this.loginForm.username===''){
+      this.loginForm.username = '';
+    }
+    if(this.loginForm.password === undefined||this.loginForm.password==null||this.loginForm.password===''){
+      this.loginForm.password = '';
+    }
+  },
   mounted(){
 
   },
@@ -63,14 +74,18 @@ export default {
         this.pwdType = "password";
       }
     },
-    submitForm(formName) {
-      this.$refs[formName].validate((valid) => {
+    submitForm() {
+      this.$refs.loginForm.validate((valid) => {
         if (valid) {
           this.loading = true;
-          /* this.$store.dispatch('Login', this.loginForm).then(() => {
+          this.$store.dispatch("login",this.loginForm).then((res)=>{
             this.loading = false;
+            Cookies.set("username",this.loginForm.username,7);
+            Cookies.set("password",this.loginForm.password,7);
             this.$router.push({path: '/'})
-          }) */
+          }).catch((res)=>{
+            this.loading = false;
+          })
         } else {
           console.log('参数验证不合法！');
           return false;

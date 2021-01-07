@@ -2,7 +2,7 @@
   <div class="sidebar-container">
     <el-menu
       class="el-menu-vertical-demo"
-      :collapse="isCollapse"
+      :collapse="sidebar.opened"
       background-color="#304156"
       text-color="#bfcbd9"
       active-text-color="#409EFF"
@@ -84,28 +84,11 @@ export default {
   },
   mounted() {},
   computed: {
-    ...mapGetters(["sidebar"]),
-    isCollapse() {
-      return this.sidebar.opened;
-    },
+    ...mapGetters(["sidebar"])
   },
-};
+}
 </script>
 <style lang="scss" scope>
-#app .sidebar-container {
-  -webkit-transition: width 0.28s;
-  transition: width 0.28s;
-  width: 200px !important;
-  height: 100%;
-  position: fixed;
-  font-size: 0px;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 1001;
-  overflow: hidden;
-  background-color: #304156;
-}
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: 200px;
   min-height: 400px;

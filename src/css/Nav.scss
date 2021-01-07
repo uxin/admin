@@ -12,9 +12,8 @@
         .horizontal-collapse-transition {
             transition: 0s width ease-in-out, 0s padding-left ease-in-out, 0s padding-right ease-in-out;
         }
-
         transition: width .28s;
-        width: 180px !important;
+        width: 200px !important;
         height: 100%;
         position: fixed;
         font-size: 0px;
@@ -23,6 +22,7 @@
         left: 0;
         z-index: 1001;
         overflow: hidden;
+        background-color: #304156;
 
         a {
             display: inline-block;
