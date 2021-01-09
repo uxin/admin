@@ -17,7 +17,7 @@ export default new Router({
       children: [{
         path: 'home',
         name: 'home',
-        meta: {keepAlive: true},
+        meta: { title: '首页', icon: 'home' },
         component: resolve => require(['@/views/home'], resolve),
       }]
     },
@@ -25,14 +25,17 @@ export default new Router({
       path: "/sp",
       name: 'sp',
       redirect: '/sp/list',
+      meta: { title: '商品', icon: 'sp-list' },
       component: resolve => require(['@/views/layout'], resolve),
       children: [{
         path: "list",
         name: 'list',
+        meta: { title: '商品列表', icon: 'sp-list' },
         component: resolve => require(['@/views/sp/product/index'], resolve),
       }, {
         path: "add",
         name: 'add',
+        meta: { title: '商品列表', icon: 'sp-add' },
         component: resolve => require(['@/views/sp/product/add'], resolve),
       }]
     }

@@ -82,9 +82,23 @@ export default {
       ],
     };
   },
-  mounted() {},
+  /* mounted() {
+    this.pageInit();
+  },
+  methods:{
+    pageInit(){
+      this._getInfo((res)=>{
+        console.log(res)
+      })
+    },
+    _getInfo(callback){
+        this.$api.getInfo().then((res)=>{
+        callback(res.data.menus);
+      })
+    }
+  }, */
   computed: {
-    ...mapGetters(["sidebar"])
+    ...mapGetters(["sidebar"]),
   },
 }
 </script>

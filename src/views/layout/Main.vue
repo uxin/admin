@@ -7,10 +7,6 @@
 <script>
 export default {
   name: 'AppMain',
-  created() {
-    this.$store
-  },
   mounted(){},
-
 }
 </script>

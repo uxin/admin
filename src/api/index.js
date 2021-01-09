@@ -19,6 +19,13 @@ class Api {
             method: 'post'
         })
     }
+
+    getInfo() {
+        return requrst({
+            url: '/admin/info',
+            method: 'get',
+        })
+    }
 };
 
 

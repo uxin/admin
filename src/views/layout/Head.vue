@@ -2,12 +2,13 @@
   <div>
     <el-menu class="navbar" mode="horizontal">
       <div class="hamburger-container">
-        <i class="el-icon-menu" @click="toggleSideBar"></i>
+        <svg-icon icon-class="menu-switch" @click.native="toggleSideBar"></svg-icon>
       </div>
       <el-breadcrumb separator="/" class="app-breadcrumb">
-        <el-breadcrumb-item class="no-redirect" :to="{ path: '/' }"
-          >首页</el-breadcrumb-item
-        >
+        <el-breadcrumb-item v-for="(item,index) in levelList" :key="index" v-if="item.meta.title">
+          <span v-if="item.redirect==='noredirect'||index==levelList.length-1" class="no-redirect">{{item.meta.title}}</span>
+          <router-link v-else :to="item.redirect||item.path">{{item.meta.title}}</router-link>
+        </el-breadcrumb-item>
       </el-breadcrumb>
       <div class="avatar-container">
         <div class="avatar-wrapper">
@@ -26,7 +27,14 @@ export default {
   data() {
     return {
       flag: false,
+      levelList: null,
     };
+  },
+  created() {
+    this.getBreadcrumb();
+  },
+  watch:{
+    '$route': 'getBreadcrumb'
   },
   computed: {
     ...mapGetters(["sidebar"]),
@@ -38,6 +46,16 @@ export default {
         // 重新刷新为了重新实例化vue-router对象 避免bug
         location.reload();
       })
+    },
+    getBreadcrumb(){
+      let matched = this.$route.matched.filter((item)=>{
+        return item.name
+      })
+      const first = matched[0];
+      if (first && first.name !== 'home') {
+        matched = [{ path: '/home', meta: { title: '首页' }}].concat(matched)
+      }
+      this.levelList = matched;
     }
   },
 };
@@ -54,8 +72,8 @@ export default {
     float: left;
     padding: 0 10px;
     height: 100%;
-    i {
-      font-size: 26px;
+    .svg-icon {
+      font-size: 25px;
       vertical-align: middle;
       cursor: pointer;
     }

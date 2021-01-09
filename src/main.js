@@ -9,6 +9,7 @@ import core from "@/core/core.config.js";
 import '@/css/index.scss';
 import 'font-awesome/css/font-awesome.css';
 import store from '@/store';
+import '@/icons';
 
 Vue.config.productionTip = false;
 Vue.use(ElementUI);
